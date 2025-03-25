@@ -10,7 +10,7 @@ class Block:
 
     def __init__(self, block_id, transactions, prev_hash, nonce=0):
         self.block_id = block_id
-        self.timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Timestamp added here
         self.transactions = transactions
         self.prev_hash = prev_hash
         self.nonce = nonce
@@ -23,7 +23,7 @@ class Block:
         """
         block_data = json.dumps({
             "block_id": self.block_id,
-            "timestamp": self.timestamp,
+            "timestamp": self.timestamp,  # Timestamp included in hash
             "transactions": self.transactions,
             "prev_hash": self.prev_hash,
             "nonce": self.nonce
@@ -35,4 +35,6 @@ class Block:
         """
         Returns a readable string representation of the block for easy debugging.
         """
-        return f"Block {self.block_id} | Hash: {self.hash[:10]}... | Prev: {self.prev_hash[:10]}... | Tx: {self.transactions}"
+        return (f"Block {self.block_id} | Timestamp: {self.timestamp} | "
+                f"Hash: {self.hash[:10]}... | Prev: {self.prev_hash[:10]}... | "
+                f"Tx: {self.transactions}")
